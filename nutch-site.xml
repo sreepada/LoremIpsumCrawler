@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<property>
+ <name>http.agent.name</name>
+ <value>My Nutch Spider</value>
+</property>
+<property>
+  <name>fetcher.parse</name>
+  <value>false</value>
+  <description>If true, fetcher will parse content. Default is false, which means
+  that a separate parsing step is required after fetching is finished.</description>
+</property>
+<property>
+  <name>fetcher.follow.outlinks.num.links</name>
+  <value>8</value>
+  <description>(EXPERT)The number of outlinks to follow when fetcher.follow.outlinks.depth is enabled. Be careful, this can multiply
+  the total number of pages to fetch. This works with fetcher.follow.outlinks.depth.divisor, by default settings the followed outlinks
+  at depth 1 is 8, not 4.
+  </description>
+</property>
+</configuration>
