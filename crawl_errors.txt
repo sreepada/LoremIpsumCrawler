@@ -1,0 +1,6 @@
+robots.txt cannot be parsed
+Cannot get protocol output
+3xx errors - url redirects (permanent and temporary)
+Socket time out while fetching - because of slow server
+unable to find valid certification path to requested target
+Tika parser cannot be found (like text/iso19139+xml, application/x-sh, application/xml-dtd)
