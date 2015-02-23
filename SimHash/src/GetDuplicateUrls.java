@@ -10,6 +10,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 public class GetDuplicateUrls
 {
     public static void main(String[] args)
@@ -23,6 +26,7 @@ public class GetDuplicateUrls
 
            int index = 0;
            BufferedReader br = new BufferedReader(new FileReader(file_1));
+
            String line;
            while ((line = br.readLine()) != null)
            {
@@ -41,7 +45,7 @@ public class GetDuplicateUrls
                }
                else
                {
-                   simind.add(String(index), simhash);
+                   simind.add(Integer.toString(index), simhash);
                }
                index += 1;
 
