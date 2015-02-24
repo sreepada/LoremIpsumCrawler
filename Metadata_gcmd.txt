@@ -13,3 +13,23 @@
  	_pst_=success(1), lastModified=0
  	_pst_=temp_moved(13), lastModified=0: https://earthdata.nasa.gov/tophat-links.html
  	_repr_=http://earthdata.nasa.gov/tophat-links.html
+ 	_pst_=exception(16), lastModified=0: Http code=403, url=http://aerospace.nasa.gov/
+ 	_pst_=exception(16), lastModified=0: java.net.NoRouteToHostException: No route to host
+ 	_pst_=exception(16), lastModified=0: java.net.SocketTimeoutException: connect timed out
+ 	_pst_=exception(16), lastModified=0: java.net.SocketTimeoutException: Read timed out
+ 	_pst_=exception(16), lastModified=0: java.net.UnknownHostException: gcmd.gsfc.nasa.gov
+ 	_pst_=moved(12), lastModified=0: http://gcmd.gsfc.nasa.gov/MailComments/ReportBug.jsf?view=inline
+ 	_pst_=moved(12), lastModified=0: http://lucene.apache.org/core/3_5_0/queryparsersyntax.html
+ 	_pst_=moved(12), lastModified=0: http://science.nasa.gov/
+ 	_pst_=moved(12), lastModified=0: http://www.nasa.gov/index.html
+ 	_pst_=moved(12), lastModified=0: http://www.rfcmedia.com/thirdrockradio/
+ 	_pst_=robots_denied(18), lastModified=0
+ 	_pst_=success(1), lastModified=0
+ 	_pst_=temp_moved(13), lastModified=0: http://gcmd.gsfc.nasa.gov/MailComments/MailComments.jsf?rcpt=gcmduso
+ 	_pst_=temp_moved(13), lastModified=0: https://earthdata.nasa.gov/tophat-links.html
+ 	_pst_=temp_moved(13), lastModified=0: http://www.nasa.gov/calendar/
+ 	_repr_=http://earthdata.nasa.gov/tophat-links.html
+ 	_repr_=http://lucene.apache.org/core/3_5_0/queryparsersyntax.html
+ 	_repr_=http://science.hq.nasa.gov/
+ 	_repr_=http://www.nasa.gov/calendar
+ 	_repr_=http://www.nasa.gov/index.html
