@@ -1,35 +1,503 @@
- 	_pst_=exception(16), lastModified=0: Http code=500, url=http://gcmd.gsfc.nasa.gov/KeywordSearch/Keywords.do?Portal=amd&KeywordPath=%5BFreetext%3D%27DIF%2FRelated_URL%2FURL_Content_Type%2FType%3A+%22GET+DATA%22%27%5D&MetadataType=0
- 	_pst_=exception(16), lastModified=0: Http code=500, url=http://gcmd.gsfc.nasa.gov/KeywordSearch/OpenSearch.do?KeywordPath=Parameters|CLIMATE INDICATORS&Portal=amd&Output=atom&clientId=fromgcmd
- 	_pst_=exception(16), lastModified=0: Http code=500, url=http://gcmd.gsfc.nasa.gov/KeywordSearch/OpenSearch.do?KeywordPath=Parameters|PALEOCLIMATE&Portal=amd&Output=atom&clientId=fromgcmd
- 	_pst_=exception(16), lastModified=0: Http code=500, url=http://gcmd.gsfc.nasa.gov/KeywordSearch/OpenSearch.do?KeywordPath=Parameters|SUN-EARTH INTERACTIONS&Portal=amd&Output=atom&clientId=fromgcmd
- 	_pst_=exception(16), lastModified=0: java.net.SocketTimeoutException: connect timed out
- 	_pst_=exception(16), lastModified=0: java.net.SocketTimeoutException: Read timed out
- 	_pst_=exception(16), lastModified=0: java.net.UnknownHostException: gcmd.gsfc.nasa.gov
- 	_pst_=exception(16), lastModified=0: java.net.UnknownHostException: gcmd.nasa.gov
- 	_pst_=exception(16), lastModified=0: java.net.UnknownHostException: idn.ceos.org
- 	_pst_=exception(16), lastModified=0: java.net.UnknownHostException: scadm.scar.org
- 	_pst_=exception(16), lastModified=0: java.net.UnknownHostException: www.nasa.gov
- 	_pst_=robots_denied(18), lastModified=0
- 	_pst_=success(1), lastModified=0
- 	_pst_=temp_moved(13), lastModified=0: https://earthdata.nasa.gov/tophat-links.html
- 	_repr_=http://earthdata.nasa.gov/tophat-links.html
- 	_pst_=exception(16), lastModified=0: Http code=403, url=http://aerospace.nasa.gov/
- 	_pst_=exception(16), lastModified=0: java.net.NoRouteToHostException: No route to host
- 	_pst_=exception(16), lastModified=0: java.net.SocketTimeoutException: connect timed out
- 	_pst_=exception(16), lastModified=0: java.net.SocketTimeoutException: Read timed out
- 	_pst_=exception(16), lastModified=0: java.net.UnknownHostException: gcmd.gsfc.nasa.gov
- 	_pst_=moved(12), lastModified=0: http://gcmd.gsfc.nasa.gov/MailComments/ReportBug.jsf?view=inline
- 	_pst_=moved(12), lastModified=0: http://lucene.apache.org/core/3_5_0/queryparsersyntax.html
- 	_pst_=moved(12), lastModified=0: http://science.nasa.gov/
- 	_pst_=moved(12), lastModified=0: http://www.nasa.gov/index.html
- 	_pst_=moved(12), lastModified=0: http://www.rfcmedia.com/thirdrockradio/
- 	_pst_=robots_denied(18), lastModified=0
- 	_pst_=success(1), lastModified=0
- 	_pst_=temp_moved(13), lastModified=0: http://gcmd.gsfc.nasa.gov/MailComments/MailComments.jsf?rcpt=gcmduso
- 	_pst_=temp_moved(13), lastModified=0: https://earthdata.nasa.gov/tophat-links.html
- 	_pst_=temp_moved(13), lastModified=0: http://www.nasa.gov/calendar/
- 	_repr_=http://earthdata.nasa.gov/tophat-links.html
- 	_repr_=http://lucene.apache.org/core/3_5_0/queryparsersyntax.html
- 	_repr_=http://science.hq.nasa.gov/
- 	_repr_=http://www.nasa.gov/calendar
- 	_repr_=http://www.nasa.gov/index.html
+ 
+ Content-Type=application/atom+xml
+ Content-Type=application/xhtml+xml
+ Content-Type=image/png
+ Content-Type=text/html
+ Content-Type=text/plain
+  _pst_=exception(16), lastModified=0: Http code=403, url=http://aerospace.nasa.gov/
+  _pst_=exception(16), lastModified=0: java.net.NoRouteToHostException: No route to host
+  _pst_=exception(16), lastModified=0: java.net.SocketTimeoutException: connect timed out
+  _pst_=exception(16), lastModified=0: java.net.SocketTimeoutException: Read timed out
+  _pst_=exception(16), lastModified=0: java.net.UnknownHostException: gcmd.gsfc.nasa.gov
+  _pst_=moved(12), lastModified=0: http://gcmd.gsfc.nasa.gov/MailComments/ReportBug.jsf?view=inline
+  _pst_=moved(12), lastModified=0: http://lucene.apache.org/core/3_5_0/queryparsersyntax.html
+ _pst_=moved(12), lastModified=0: http://lucene.apache.org/core/3_5_0/queryparsersyntax.html
+  _pst_=moved(12), lastModified=0: http://science.nasa.gov/
+ _pst_=moved(12), lastModified=0: http://science.nasa.gov/
+  _pst_=moved(12), lastModified=0: https://www.youtube.com/playlist?list=PL8F7BC3F1240213F5
+ _pst_=moved(12), lastModified=0: https://www.youtube.com/playlist?list=PL8F7BC3F1240213F5
+  _pst_=moved(12), lastModified=0: http://www.nasa.gov/index.html
+ _pst_=moved(12), lastModified=0: http://www.nasa.gov/index.html
+  _pst_=moved(12), lastModified=0: http://www.rfcmedia.com/thirdrockradio/
+  _pst_=robots_denied(18), lastModified=0
+  _pst_=success(1), lastModified=0
+  _pst_=temp_moved(13), lastModified=0: http://gcmd.gsfc.nasa.gov/MailComments/MailComments.jsf?rcpt=gcmduso
+  _pst_=temp_moved(13), lastModified=0: https://earthdata.nasa.gov/tophat-links.html
+ _pst_=temp_moved(13), lastModified=0: https://earthdata.nasa.gov/tophat-links.html
+  _pst_=temp_moved(13), lastModified=0: http://www.nasa.gov/calendar/
+ _pst_=temp_moved(13), lastModified=0: http://www.nasa.gov/calendar/
+  _repr_=http://earthdata.nasa.gov/tophat-links.html
+  _repr_=http://lucene.apache.org/core/3_5_0/queryparsersyntax.html
+  _repr_=http://science.hq.nasa.gov/
+  _repr_=https://www.youtube.com/playlist?list=PL8F7BC3F1240213F5
+  _repr_=http://www.nasa.gov/calendar
+  _repr_=http://www.nasa.gov/index.html
+ _rs_=101
+ _rs_=1016
+ _rs_=1038
+ _rs_=10436
+ _rs_=1061
+ _rs_=1113
+ _rs_=1122
+ _rs_=1152
+ _rs_=1163
+ _rs_=1179
+ _rs_=1199
+ _rs_=1226
+ _rs_=1284
+ _rs_=13
+ _rs_=132
+ _rs_=1360
+ _rs_=14390
+ _rs_=147
+ _rs_=1491
+ _rs_=15210
+ _rs_=1567
+ _rs_=158
+ _rs_=1580
+ _rs_=164
+ _rs_=1695
+ _rs_=17
+ _rs_=1818
+ _rs_=183
+ _rs_=186
+ _rs_=193
+ _rs_=1933
+ _rs_=195
+ _rs_=196
+ _rs_=197
+ _rs_=200
+ _rs_=201
+ _rs_=205
+ _rs_=207
+ _rs_=2083
+ _rs_=2103
+ _rs_=229
+ _rs_=23
+ _rs_=23549
+ _rs_=2385
+ _rs_=2387
+ _rs_=247
+ _rs_=251
+ _rs_=2568
+ _rs_=26925
+ _rs_=274
+ _rs_=275
+ _rs_=278
+ _rs_=281
+ _rs_=283
+ _rs_=285
+ _rs_=2934
+ _rs_=294
+ _rs_=296
+ _rs_=302
+ _rs_=3030
+ _rs_=3110
+ _rs_=3128
+ _rs_=315
+ _rs_=316
+ _rs_=335
+ _rs_=354
+ _rs_=3651
+ _rs_=374
+ _rs_=377
+ _rs_=381
+ _rs_=392
+ _rs_=394
+ _rs_=399
+ _rs_=4039
+ _rs_=4169
+ _rs_=4222
+ _rs_=4367
+ _rs_=437
+ _rs_=4370
+ _rs_=439
+ _rs_=4518
+ _rs_=46
+ _rs_=4632
+ _rs_=467
+ _rs_=481
+ _rs_=493
+ _rs_=514
+ _rs_=5234
+ _rs_=5242
+ _rs_=5823
+ _rs_=590
+ _rs_=601
+ _rs_=6113
+ _rs_=6162
+ _rs_=654
+ _rs_=657
+ _rs_=661
+ _rs_=689
+ _rs_=748
+ _rs_=751
+ _rs_=824
+ _rs_=8272
+ _rs_=830
+ _rs_=8535
+ _rs_=8559
+ _rs_=8719
+ _rs_=879
+ _rs_=882
+ _rs_=8827
+ _rs_=909
+ _rs_=920
+ _rs_=9222
+ _rs_=9394
+ _rs_=940
+ _rs_=9409
+ _rs_=977
+ _rs_=9951
+ 
+ Content-Type=text/html
+  _pst_=success(1), lastModified=0
+ _rs_=1119
+ _rs_=1170
+ _rs_=1303
+ _rs_=1479
+ _rs_=148
+ _rs_=149
+ _rs_=152
+ _rs_=159
+ _rs_=1652
+ _rs_=174
+ _rs_=179
+ _rs_=188
+ _rs_=191
+ _rs_=193
+ _rs_=196
+ _rs_=2317
+ _rs_=2352
+ _rs_=2417
+ _rs_=244
+ _rs_=270
+ _rs_=295
+ _rs_=3114
+ _rs_=326
+ _rs_=3267
+ _rs_=328
+ _rs_=330
+ _rs_=3334
+ _rs_=337
+ _rs_=341
+ _rs_=344
+ _rs_=345
+ _rs_=346
+ _rs_=348
+ _rs_=352
+ _rs_=359
+ _rs_=365
+ _rs_=370
+ _rs_=485
+ _rs_=488
+ _rs_=503
+ _rs_=5240
+ _rs_=5335
+ _rs_=538
+ _rs_=5380
+ _rs_=5418
+ _rs_=542
+ _rs_=550
+ _rs_=5525
+ _rs_=556
+ _rs_=5789
+ _rs_=622
+ _rs_=712
+ _rs_=773
+ _rs_=789
+ _rs_=914
+ _rs_=940
+ 
+ Content-Type=application/rss+xml
+ Content-Type=application/xhtml+xml
+ Content-Type=text/html
+  _pst_=exception(16), lastModified=0: Http code=500, url=http://gcmd.gsfc.nasa.gov/KeywordSearch/Keywords.do?Portal=amd&KeywordPath=%5BFreetext%3D%27DIF%2FRelated_URL%2FURL_Content_Type%2FType%3A+%22GET+DATA%22%27%5D&MetadataType=0
+  _pst_=exception(16), lastModified=0: Http code=500, url=http://gcmd.gsfc.nasa.gov/KeywordSearch/OpenSearch.do?KeywordPath=Parameters|CLIMATE INDICATORS&Portal=amd&Output=atom&clientId=fromgcmd
+  _pst_=exception(16), lastModified=0: Http code=500, url=http://gcmd.gsfc.nasa.gov/KeywordSearch/OpenSearch.do?KeywordPath=Parameters|PALEOCLIMATE&Portal=amd&Output=atom&clientId=fromgcmd
+  _pst_=exception(16), lastModified=0: Http code=500, url=http://gcmd.gsfc.nasa.gov/KeywordSearch/OpenSearch.do?KeywordPath=Parameters|SUN-EARTH INTERACTIONS&Portal=amd&Output=atom&clientId=fromgcmd
+  _pst_=exception(16), lastModified=0: java.net.SocketTimeoutException: connect timed out
+  _pst_=exception(16), lastModified=0: java.net.SocketTimeoutException: Read timed out
+  _pst_=exception(16), lastModified=0: java.net.UnknownHostException: gcmd.gsfc.nasa.gov
+  _pst_=exception(16), lastModified=0: java.net.UnknownHostException: gcmd.nasa.gov
+  _pst_=exception(16), lastModified=0: java.net.UnknownHostException: idn.ceos.org
+  _pst_=exception(16), lastModified=0: java.net.UnknownHostException: nutch.apache.org
+  _pst_=exception(16), lastModified=0: java.net.UnknownHostException: scadm.scar.org
+  _pst_=exception(16), lastModified=0: java.net.UnknownHostException: www.nasa.gov
+  _pst_=robots_denied(18), lastModified=0
+  _pst_=success(1), lastModified=0
+  _pst_=temp_moved(13), lastModified=0: https://earthdata.nasa.gov/tophat-links.html
+ _pst_=temp_moved(13), lastModified=0: https://earthdata.nasa.gov/tophat-links.html
+  _repr_=http://earthdata.nasa.gov/tophat-links.html
+ _rs_=10205
+ _rs_=1039
+ _rs_=1050
+ _rs_=1060
+ _rs_=1061
+ _rs_=1074
+ _rs_=1076
+ _rs_=1085
+ _rs_=1090
+ _rs_=1119
+ _rs_=1155
+ _rs_=11653
+ _rs_=11667
+ _rs_=1170
+ _rs_=1185
+ _rs_=1193
+ _rs_=1197
+ _rs_=1205
+ _rs_=1210
+ _rs_=1214
+ _rs_=1219
+ _rs_=1227
+ _rs_=12430
+ _rs_=1266
+ _rs_=1269
+ _rs_=1303
+ _rs_=1333
+ _rs_=1357
+ _rs_=136
+ _rs_=1361
+ _rs_=1371
+ _rs_=13722
+ _rs_=13777
+ _rs_=139
+ _rs_=140
+ _rs_=1405
+ _rs_=14340
+ _rs_=144
+ _rs_=1440
+ _rs_=1447
+ _rs_=145
+ _rs_=1452
+ _rs_=146
+ _rs_=14653
+ _rs_=1467
+ _rs_=1479
+ _rs_=148
+ _rs_=149
+ _rs_=150
+ _rs_=1507
+ _rs_=151
+ _rs_=152
+ _rs_=15203
+ _rs_=1524
+ _rs_=153
+ _rs_=154
+ _rs_=1541
+ _rs_=1544
+ _rs_=157
+ _rs_=15759
+ _rs_=158
+ _rs_=159
+ _rs_=1593
+ _rs_=160
+ _rs_=1604
+ _rs_=163
+ _rs_=164
+ _rs_=1652
+ _rs_=166
+ _rs_=167
+ _rs_=1676
+ _rs_=169
+ _rs_=1696
+ _rs_=170
+ _rs_=171
+ _rs_=172
+ _rs_=1729
+ _rs_=173
+ _rs_=1736
+ _rs_=174
+ _rs_=176
+ _rs_=177
+ _rs_=178
+ _rs_=179
+ _rs_=180
+ _rs_=181
+ _rs_=183
+ _rs_=1838
+ _rs_=184
+ _rs_=185
+ _rs_=187
+ _rs_=188
+ _rs_=190
+ _rs_=191
+ _rs_=192
+ _rs_=1927
+ _rs_=193
+ _rs_=194
+ _rs_=195
+ _rs_=196
+ _rs_=19674
+ _rs_=197
+ _rs_=198
+ _rs_=2001
+ _rs_=201
+ _rs_=2035
+ _rs_=206
+ _rs_=207
+ _rs_=209
+ _rs_=2134
+ _rs_=214
+ _rs_=215
+ _rs_=2153
+ _rs_=2177
+ _rs_=222
+ _rs_=226
+ _rs_=2280
+ _rs_=2281
+ _rs_=2288
+ _rs_=2291
+ _rs_=2317
+ _rs_=232
+ _rs_=2352
+ _rs_=2417
+ _rs_=244
+ _rs_=2455
+ _rs_=247
+ _rs_=256
+ _rs_=258
+ _rs_=260
+ _rs_=2608
+ _rs_=2640
+ _rs_=269
+ _rs_=270
+ _rs_=277
+ _rs_=290
+ _rs_=291
+ _rs_=293
+ _rs_=295
+ _rs_=309
+ _rs_=3114
+ _rs_=3119
+ _rs_=3190
+ _rs_=3206
+ _rs_=323
+ _rs_=324
+ _rs_=326
+ _rs_=3267
+ _rs_=328
+ _rs_=329
+ _rs_=330
+ _rs_=331
+ _rs_=332
+ _rs_=333
+ _rs_=3334
+ _rs_=3335
+ _rs_=334
+ _rs_=335
+ _rs_=3358
+ _rs_=336
+ _rs_=337
+ _rs_=338
+ _rs_=339
+ _rs_=340
+ _rs_=341
+ _rs_=3416
+ _rs_=342
+ _rs_=343
+ _rs_=344
+ _rs_=345
+ _rs_=346
+ _rs_=347
+ _rs_=3476
+ _rs_=348
+ _rs_=3482
+ _rs_=349
+ _rs_=350
+ _rs_=352
+ _rs_=354
+ _rs_=3549
+ _rs_=357
+ _rs_=359
+ _rs_=3606
+ _rs_=361
+ _rs_=365
+ _rs_=366
+ _rs_=369
+ _rs_=370
+ _rs_=372
+ _rs_=374
+ _rs_=377
+ _rs_=379
+ _rs_=388
+ _rs_=395
+ _rs_=424
+ _rs_=432
+ _rs_=4343
+ _rs_=437
+ _rs_=4389
+ _rs_=4422
+ _rs_=4452
+ _rs_=447
+ _rs_=4519
+ _rs_=457
+ _rs_=472
+ _rs_=4723
+ _rs_=485
+ _rs_=486
+ _rs_=488
+ _rs_=489
+ _rs_=491
+ _rs_=495
+ _rs_=496
+ _rs_=500
+ _rs_=503
+ _rs_=515
+ _rs_=5240
+ _rs_=5335
+ _rs_=538
+ _rs_=5380
+ _rs_=5382
+ _rs_=5418
+ _rs_=542
+ _rs_=550
+ _rs_=5509
+ _rs_=552
+ _rs_=5525
+ _rs_=556
+ _rs_=5661
+ _rs_=569
+ _rs_=5789
+ _rs_=5802
+ _rs_=581
+ _rs_=582
+ _rs_=589
+ _rs_=615
+ _rs_=622
+ _rs_=637
+ _rs_=6414
+ _rs_=6614
+ _rs_=681
+ _rs_=700
+ _rs_=712
+ _rs_=7158
+ _rs_=7171
+ _rs_=7177
+ _rs_=7205
+ _rs_=7207
+ _rs_=734
+ _rs_=7340
+ _rs_=7350
+ _rs_=7372
+ _rs_=741
+ _rs_=773
+ _rs_=7832
+ _rs_=786
+ _rs_=789
+ _rs_=7890
+ _rs_=8448
+ _rs_=874
+ _rs_=876
+ _rs_=8852
+ _rs_=8900
+ _rs_=899
+ _rs_=902
+ _rs_=914
+ _rs_=9307
+ _rs_=940
+ _rs_=960
+ _rs_=9622
+ _rs_=9679
+ _rs_=978
