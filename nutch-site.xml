@@ -37,4 +37,15 @@
         <description>This number is the maximum number of threads that
             should be allowed to access a host at one time.</description>
     </property>
+    <property>
+        <name>plugin.includes</name>
+        <value>protocol-http|urlfilter-(regex|nearduplicate)|parse-(html|tika)|index-(basic|anchor)|scoring-opic|urlnormalizer-(pass|regex|basic)|urlmeta</value>
+        <description>Regular expression naming plugin directory names to
+            include.  Any plugin not matching this expression is excluded.
+            In any case you need at least include the nutch-extensionpoints plugin. By
+            default Nutch includes crawling just HTML and plain text via HTTP,
+            and basic indexing and search plugins.
+        </description>
+    </property>
+
 </configuration>
