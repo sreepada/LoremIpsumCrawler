@@ -54,6 +54,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import java.net.URL;
 import java.net.MalformedURLException;
@@ -75,7 +76,6 @@ public class NearDuplicateURLFilter implements URLFilter {
 
 
     public NearDuplicateURLFilter() throws IOException {
-        LOG.info("start aagide");
         LOG.info("current thread ID " + Thread.currentThread().getId());
 
     }
@@ -84,9 +84,6 @@ public class NearDuplicateURLFilter implements URLFilter {
         String urlString = url;
         Protocol protocol;
         Content content;
-        LOG.info("inside the function");
-        LOG.info("checking the url " + urlString);
-        LOG.info("current thread ID inside function " + Thread.currentThread().getId());
 
         Configuration conf = NutchConfiguration.create();
         try {
@@ -101,7 +98,19 @@ public class NearDuplicateURLFilter implements URLFilter {
         Metadata metadata = content.getMetadata();
         LOG.info("this is the metadata: " + metadata.toString());
 
-        long simhash = SimHash.computeSimHashFromString(Shingle.shingles(metadata.toString())); 
+        Set<String> shingles = new HashSet<String>(); 
+
+        for(String key: metadata.names())
+        {
+            if(key.equals("Date") || key.equals("Set-Cookie"))
+            {
+                continue;
+            }
+            shingles.add(key + ":" + metadata.get(key));
+        }
+
+
+        long simhash = SimHash.computeSimHashFromString(shingles); 
 
         Set<String> duplicates = simind.get_near_dups(simhash);
 
