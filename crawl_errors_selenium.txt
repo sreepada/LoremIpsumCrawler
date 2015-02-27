@@ -1,0 +1,18 @@
+ java.lang.IllegalArgumentException: Invalid uri 'https://www.eol.ucar.edu/system/files/files/field_project/DROPS 1/DROPS_2009_Facility_Request.pdf': escaped absolute path not valid
+ java.lang.NullPointerException
+ java.lang.OutOfMemoryError: Java heap space
+ java.lang.RuntimeException: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"tag name","selector":"body"}
+ java.lang.RuntimeException: org.openqa.selenium.StaleElementReferenceException: Element not found in the cache - perhaps the page has changed since it was looked up
+ java.lang.RuntimeException: org.openqa.selenium.TimeoutException: Timed out waiting for page load.
+ java.lang.RuntimeException: org.openqa.selenium.WebDriverException: Failed to connect to binary FirefoxBinary(/usr/bin/firefox) on port 7057; process output follows: 
+ java.lang.RuntimeException: org.openqa.selenium.WebDriverException: [JavaScript Error: "e is null" {file: "file:///tmp/anonymous7989428438368782238webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js" line: 7854}]'[JavaScript Error: "e is null" {file: "file:///tmp/anonymous7989428438368782238webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js" line: 7854}]' when calling method: [nsICommandProcessor::execute]
+ java.lang.RuntimeException: org.openqa.selenium.WebDriverException: Unable to bind to locking port 7054 within 45000 ms
+ java.net.MalformedURLException: 
+  java.net.UnknownHostException: 
+ javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+ org.apache.commons.httpclient.ConnectTimeoutException: The host did not accept the connection within timeout of 10000 ms
+ org.apache.nutch.protocol.ftp.FtpError: Ftp Error: 404
+ org.apache.nutch.protocol.ftp.FtpException: java.io.IOException: Stream closed
+ org.apache.nutch.protocol.ftp.FtpException: java.net.ConnectException: Connection timed out
+ org.apache.nutch.protocol.ftp.FtpException: java.net.SocketTimeoutException: Read timed out
+ org.apache.nutch.protocol.ftp.FtpException: java.net.UnknownHostException: ftp.nodc.noaa.gov
