@@ -151,6 +151,7 @@ public class ExactDuplicateURLFilter implements URLFilter {
                 protocol = new ProtocolFactory(conf).getProtocol(urlString);                                                                                
             } catch (Exception e) {
                 logExError(e);
+                LOG.info("returning the urlstring");
                 return urlString;
             }
             content = protocol.getProtocolOutput(new Text(urlString),
@@ -180,6 +181,52 @@ public class ExactDuplicateURLFilter implements URLFilter {
 
 
     public void setConf(Configuration conf) {
+        this.conf = conf;
+
+        String pluginName = "urlfilter-suffix";
+        Extension[] extensions = PluginRepository.get(conf)
+            .getExtensionPoint(URLFilter.class.getName()).getExtensions();
+        for (int i = 0; i < extensions.length; i++) {
+            Extension extension = extensions[i];
+            if (extension.getDescriptor().getPluginId().equals(pluginName)) {
+                attributeFile = extension.getAttribute("file");
+                break;
+            }
+        }
+        if (attributeFile != null && attributeFile.trim().equals(""))
+            attributeFile = null;
+        if (attributeFile != null) {
+            if (LOG.isInfoEnabled()) {
+                LOG.info("Attribute \"file\" is defined for plugin " + pluginName
+                        + " as " + attributeFile);
+            }
+        } else {
+            // if (LOG.isWarnEnabled()) {
+            // LOG.warn("Attribute \"file\" is not defined in plugin.xml for
+            // plugin "+pluginName);
+            // }
+        }
+
+        String file = conf.get("urlfilter.suffix.file");
+        String stringRules = conf.get("urlfilter.suffix.rules");
+        // attribute "file" takes precedence if defined
+        if (attributeFile != null)
+            file = attributeFile;
+        Reader reader = null;
+        if (stringRules != null) { // takes precedence over files
+            reader = new StringReader(stringRules);
+        } else {
+            reader = conf.getConfResourceAsReader(file);
+        }
+
+        /*try {
+        //readConfiguration(reader);
+        } catch (IOException e) {
+        if (LOG.isErrorEnabled()) {
+        LOG.error(e.getMessage());
+        }
+        throw new RuntimeException(e.getMessage(), e);
+        }*/
     }
 
     public Configuration getConf() {
