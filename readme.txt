@@ -33,9 +33,21 @@ Crawl errors with selenium are listed in crawl_errors_selenium.txt
 URLs which were failed during first crawl can be found in failed_urls.txt
 
 
-6) Failed URLs during Selenium:(failed_urls_selenium.txt)
+7) Failed URLs during Selenium:(failed_urls_selenium.txt)
 ---------------------------------------------------------
 URLs which failed during second crawl (with selenium) which can be found in failed_urls_selenium.txt
  
 
-
+8) Include plugin into nutch:
+--------------------------------
+  1. Copy urlfilter-nearduplcate and urlfilter-exactdupliate to folder $nutch_root/src/plugin/.
+  2. Add   
+      `<ant dir="urlfilter-nearduplicate" target="deploy"/>`   
+      `<ant dir="urlfilter-exactduplicate" target="deploy"/>`   
+       under deploy targets to file $nutch_root/src/plugin/build.xml as showin plugin_build.xml
+  3. (Optional) Add   
+        `<ant dir="urlfilter-nearduplicate" target="clean"/>`   
+        `<ant dir="urlfilter-exactduplicate" target="clean"/>`   
+        under clean targets to file $nutch_root/src/plugin/build.xml as showin plugin_build.xml
+  4. Copy nutch-site.xml to your preferred nutch-site.xml conf.
+  5. run `ant runtime` in you $nutch_root
