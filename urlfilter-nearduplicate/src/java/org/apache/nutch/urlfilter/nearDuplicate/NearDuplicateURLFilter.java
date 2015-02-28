@@ -68,6 +68,16 @@ import java.util.HashSet;
 import java.net.URL;
 import java.net.MalformedURLException;
 
+/*
+ *   This plugin accepts a URLFilter extension.
+ *   At every instantiation it gets the latest metadata from current segment
+ *   and stores them into a simhash, and compares the current URL's metadata
+ *   simhash for near duplicates, within hamming distance of 3.
+ *   It returns null if it is a near duplicate else returns the urls string.
+ *
+ *   Authors - LoremIpsumCrawler Team
+ *             CSCI 575 Spring 2015
+   */
 public class NearDuplicateURLFilter implements URLFilter {
 
     private String attributeFile = null;
@@ -95,16 +105,20 @@ public class NearDuplicateURLFilter implements URLFilter {
         LOG.error(errors.toString());
     }
 
+    //Override the filter function from interface URLFilter
     public String filter(String urlString) {
-        LOG.info("inside the function");
-        LOG.info("checking the url " + urlString);
-        LOG.info("current thread ID inside function " + Thread.currentThread().getId());
+        LOG.debug("inside the function");
+        LOG.debug("checking the url " + urlString);
+        LOG.debug("current thread ID inside function " + Thread.currentThread().getId());
 
         JobConf job = new NutchJob(getConf());
         String path = job.get("mapred.work.output.dir", "dintGetAnything");
-        LOG.info("this is the current path: " + path);
+        LOG.debug("this is the current path: " + path);
+        //Check to see if hadoop configuration has updated output dir to crawl
+        //folder from temporary inject folder.
         if (path.contains("segment")) {
             SimhashIndex simind = new SimhashIndex(new HashMap<String, Long>());
+            //trim to segment path from output.dir
             String segmentPath = path.split("/_temporary/")[0];
             LOG.info("this is the path of the current nutch job segments " + segmentPath);
 
@@ -115,7 +129,8 @@ public class NearDuplicateURLFilter implements URLFilter {
                 SequenceFile.Reader reader = new SequenceFile.Reader(fs, segmentFile, confForReader);
                 Text segmentKey = new Text();
                 Content segmentContent = new Content();
-                // Loop through sequence files
+                // Loop through sequence files to get Content metadata of already
+                // fetched urls and store into simhash
                 while (reader.next(segmentKey, segmentContent)) {
                     Metadata segmentMetadata = segmentContent.getMetadata();
                     LOG.info("this is the key: " + segmentKey + " with the metadata: " + segmentMetadata.toString());
@@ -134,7 +149,8 @@ public class NearDuplicateURLFilter implements URLFilter {
             } catch (Exception e) {
                 logExError(e);
             }
-
+            
+            // Get content of current URL (sent as argument)
             Configuration conf = NutchConfiguration.create();
             Protocol protocol;
             Content content;
@@ -147,11 +163,14 @@ public class NearDuplicateURLFilter implements URLFilter {
             content = protocol.getProtocolOutput(new Text(urlString),
                     new CrawlDatum()).getContent();
 
+            //get metadata from content object
             Metadata metadata = content.getMetadata();
             LOG.info("this is the metadata: " + metadata.toString());
 
             Set<String> shingles = new HashSet<String>();
 
+            //Loop through metadata and add to shingle only if 
+            //it is not Date and Set-Cookie
             for(String key: metadata.names())
             {
                 if(key.equals("Date") || key.equals("Set-Cookie"))
@@ -162,8 +181,9 @@ public class NearDuplicateURLFilter implements URLFilter {
             }
 
             long simhash = SimHash.computeSimHashFromString(shingles); 
-            Set<String> duplicates = simind.get_near_dups(simhash);
 
+            Set<String> duplicates = simind.get_near_dups(simhash);
+            //return null if the url is a duplicate or add to simhash
             if(duplicates.size() > 0)
             {
                 LOG.info("found a duplicate: " + urlString);
@@ -184,52 +204,6 @@ public class NearDuplicateURLFilter implements URLFilter {
 
 
     public void setConf(Configuration conf) {
-        this.conf = conf;
-
-        String pluginName = "urlfilter-suffix";
-        Extension[] extensions = PluginRepository.get(conf)
-            .getExtensionPoint(URLFilter.class.getName()).getExtensions();
-        for (int i = 0; i < extensions.length; i++) {
-            Extension extension = extensions[i];
-            if (extension.getDescriptor().getPluginId().equals(pluginName)) {
-                attributeFile = extension.getAttribute("file");
-                break;
-            }
-        }
-        if (attributeFile != null && attributeFile.trim().equals(""))
-            attributeFile = null;
-        if (attributeFile != null) {
-            if (LOG.isInfoEnabled()) {
-                LOG.info("Attribute \"file\" is defined for plugin " + pluginName
-                        + " as " + attributeFile);
-            }
-        } else {
-            // if (LOG.isWarnEnabled()) {
-            // LOG.warn("Attribute \"file\" is not defined in plugin.xml for
-            // plugin "+pluginName);
-            // }
-        }
-
-        String file = conf.get("urlfilter.suffix.file");
-        String stringRules = conf.get("urlfilter.suffix.rules");
-        // attribute "file" takes precedence if defined
-        if (attributeFile != null)
-            file = attributeFile;
-        Reader reader = null;
-        if (stringRules != null) { // takes precedence over files
-            reader = new StringReader(stringRules);
-        } else {
-            reader = conf.getConfResourceAsReader(file);
-        }
-
-        /*try {
-        //readConfiguration(reader);
-        } catch (IOException e) {
-        if (LOG.isErrorEnabled()) {
-        LOG.error(e.getMessage());
-        }
-        throw new RuntimeException(e.getMessage(), e);
-        }*/
     }
 
     public Configuration getConf() {

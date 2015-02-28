@@ -68,6 +68,18 @@ import java.util.HashSet;
 import java.net.URL;
 import java.net.MalformedURLException;
 
+/*
+ *   This plugin accepts a URLFilter extension.
+ *   At every instantiation it gets the latest content from current segment
+ *   and depending on bucket location stores it into a map with simhash as key
+ *   with value as MD5 signatures of text in the buckets,
+ *   and compares the content of the current URL after getting simhash and MD5
+ *   of same bucket locations for exact duplicates.
+ *   It returns null if it is a exact duplicate else returns the urls string.
+ *
+ *   Authors - LoremIpsumCrawler Team
+ *             CSCI 575 Spring 2015
+   */
 public class ExactDuplicateURLFilter implements URLFilter {
 
     private String attributeFile = null;
@@ -95,6 +107,7 @@ public class ExactDuplicateURLFilter implements URLFilter {
         LOG.error(errors.toString());
     }
 
+    //Override the filter function from interface URLFilter
     public String filter(String urlString) {
         LOG.info("inside the function");
         LOG.info("checking the url " + urlString);
@@ -103,8 +116,11 @@ public class ExactDuplicateURLFilter implements URLFilter {
         JobConf job = new NutchJob(getConf());
         String path = job.get("mapred.work.output.dir", "dintGetAnything");
         LOG.info("this is the current path: " + path);
+        //Check to see if hadoop configuration has updated output dir to crawl
+        //folder from temporary inject folder.
         if (path.contains("segment")) {
             IdDuplicates exact_duplicate = new IdDuplicates();
+            //trim to segment path from output.dir
             String segmentPath = path.split("/_temporary/")[0];
             LOG.info("this is the path of the current nutch job segments " + segmentPath);
 
@@ -115,7 +131,9 @@ public class ExactDuplicateURLFilter implements URLFilter {
                 SequenceFile.Reader reader = new SequenceFile.Reader(fs, segmentFile, confForReader);
                 Text segmentKey = new Text();
                 Content segmentContent = new Content();
-                // Loop through sequence files
+                // Loop through sequence files to get Content of already
+                // fetched urls and call checkForexactduplcates to create
+                // store simhash and MD5 into exact_duplicate map.      
                 while (reader.next(segmentKey, segmentContent)) {
                     String segmentContentString = new String(segmentContent.getContent(), "UTF-8");
                     LOG.info("this is the key: " + segmentKey);
@@ -125,6 +143,7 @@ public class ExactDuplicateURLFilter implements URLFilter {
                 logExError(e);
             }
 
+            // Get content of current URL (sent as argument)
             Configuration conf = NutchConfiguration.create();
             Protocol protocol;
             Content content;
@@ -140,6 +159,7 @@ public class ExactDuplicateURLFilter implements URLFilter {
             try {
                 String contentString = new String(content.getContent(), "UTF-8");
                 LOG.info("this is the content: " + contentString);
+                //return null if the url is a duplicate or add to map 
                 if(exact_duplicate.checkForExactDuplicates(contentString, urlString))
                 {   
                     LOG.info("this url is a duplicate: " + urlString);
