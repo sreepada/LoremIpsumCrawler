@@ -1,3 +1,4 @@
+package org.apache.nutch.urlfilter.nearduplicate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
