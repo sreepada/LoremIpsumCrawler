@@ -1,5 +1,3 @@
-# LoremIpsumCrawler
-CSCI 572 Spring 2015 Assignemnts
 
 1) Mime types:(get_mime_types.py)
 --------------------------------
