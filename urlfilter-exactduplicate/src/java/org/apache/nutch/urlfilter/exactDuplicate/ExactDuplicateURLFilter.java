@@ -17,7 +17,10 @@
 
 package org.apache.nutch.urlfilter.exactduplicate;
 
-import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.*;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.mapred.*;
 import org.apache.nutch.net.*;
 
 import org.apache.nutch.protocol.ProtocolFactory;                                                                                                     
@@ -26,10 +29,14 @@ import org.apache.nutch.protocol.Content;
 import org.apache.nutch.protocol.ProtocolException;
 import org.apache.nutch.util.NutchConfiguration;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.SequenceFile;
 import org.apache.nutch.crawl.CrawlDatum;
 import org.apache.nutch.metadata.Metadata;
+import org.apache.nutch.segment.SegmentReader;
+import org.apache.nutch.segment.SegmentReader.SegmentReaderStats;
 
 import org.apache.nutch.util.NutchConfiguration;
+import org.apache.nutch.util.NutchJob;
 import org.apache.nutch.util.SuffixStringMatcher;
 
 import org.apache.nutch.plugin.Extension;
@@ -46,7 +53,9 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.io.BufferedWriter;
+import java.io.Writer;
 
 import java.lang.Thread;
 
@@ -54,6 +63,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import java.net.URL;
 import java.net.MalformedURLException;
@@ -68,45 +78,79 @@ public class ExactDuplicateURLFilter implements URLFilter {
     private boolean ignoreCase = false;
 
     private Configuration conf;
-    private static IdDuplicates exact_duplicate = new IdDuplicates();
 
     private static final Logger LOG = LoggerFactory
         .getLogger(ExactDuplicateURLFilter.class);
 
 
     public ExactDuplicateURLFilter() throws IOException {
+        LOG.info("start aagide");
         LOG.info("current thread ID " + Thread.currentThread().getId());
 
     }
 
-    public String filter(String url) {
-        String urlString = url;
-        Protocol protocol;
-        Content content;
+    public void logExError(Exception e) {
+        StringWriter errors = new StringWriter();
+        e.printStackTrace(new PrintWriter(errors));
+        LOG.error(errors.toString());
+    }
 
-        Configuration conf = NutchConfiguration.create();
-        try {
-            protocol = new ProtocolFactory(conf).getProtocol(urlString);                                                                                
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+    public String filter(String urlString) {
+        LOG.info("inside the function");
+        LOG.info("checking the url " + urlString);
+        LOG.info("current thread ID inside function " + Thread.currentThread().getId());
+
+        JobConf job = new NutchJob(getConf());
+        String path = job.get("mapred.work.output.dir", "dintGetAnything");
+        LOG.info("this is the current path: " + path);
+        if (path.contains("segment")) {
+            IdDuplicates exact_duplicate = new IdDuplicates();
+            String segmentPath = path.split("/_temporary/")[0];
+            LOG.info("this is the path of the current nutch job segments " + segmentPath);
+
+            try {
+                Configuration confForReader = NutchConfiguration.create();       
+                FileSystem fs = FileSystem.get(confForReader);
+                Path segmentFile = new Path(segmentPath + "/content/part-00000/data");
+                SequenceFile.Reader reader = new SequenceFile.Reader(fs, segmentFile, confForReader);
+                Text segmentKey = new Text();
+                Content segmentContent = new Content();
+                // Loop through sequence files
+                while (reader.next(segmentKey, segmentContent)) {
+                    String segmentContentString = new String(segmentContent.getContent(), "UTF-8");
+                    LOG.info("this is the key: " + segmentKey);
+                    exact_duplicate.checkForExactDuplicates(segmentContentString, segmentKey.toString());
+                }
+            } catch (Exception e) {
+                logExError(e);
+            }
+
+            Configuration conf = NutchConfiguration.create();
+            Protocol protocol;
+            Content content;
+            try {
+                protocol = new ProtocolFactory(conf).getProtocol(urlString);                                                                                
+            } catch (Exception e) {
+                logExError(e);
+                return urlString;
+            }
+            content = protocol.getProtocolOutput(new Text(urlString),
+                    new CrawlDatum()).getContent();
+
+            try {
+                String contentString = new String(content.getContent(), "UTF-8");
+                LOG.info("this is the content: " + contentString);
+                if(exact_duplicate.checkForExactDuplicates(contentString, urlString))
+                {   
+                    LOG.info("this url is a duplicate: " + urlString);
+                    return null;
+                }  
+            } catch (Exception e) {
+                logExError(e);
+            }
         }
-        content = protocol.getProtocolOutput(new Text(urlString),
-                new CrawlDatum()).getContent();
 
-        String pageText = "";
-        try {
-            pageText = new String(content.getContent(), "UTF-8");
-        } catch (Exception e) {
-            LOG.error("excpetion while string encoding");
-        }
-
-        if(!exact_duplicate.checkForExactDuplicates(pageText, urlString))
-        {
-            return null;
-        }
-
-        return url;
+        return urlString;
     }
 
     public static void main(String args[]) throws IOException {
@@ -135,7 +179,12 @@ public class ExactDuplicateURLFilter implements URLFilter {
                 LOG.info("Attribute \"file\" is defined for plugin " + pluginName
                         + " as " + attributeFile);
             }
-        } 
+        } else {
+            // if (LOG.isWarnEnabled()) {
+            // LOG.warn("Attribute \"file\" is not defined in plugin.xml for
+            // plugin "+pluginName);
+            // }
+        }
 
         String file = conf.get("urlfilter.suffix.file");
         String stringRules = conf.get("urlfilter.suffix.rules");
@@ -149,6 +198,14 @@ public class ExactDuplicateURLFilter implements URLFilter {
             reader = conf.getConfResourceAsReader(file);
         }
 
+        /*try {
+        //readConfiguration(reader);
+        } catch (IOException e) {
+        if (LOG.isErrorEnabled()) {
+        LOG.error(e.getMessage());
+        }
+        throw new RuntimeException(e.getMessage(), e);
+        }*/
     }
 
     public Configuration getConf() {
