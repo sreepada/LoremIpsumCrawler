@@ -1,4 +1,3 @@
-package org.apache.nutch.urlfilter.nearduplicate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -39,18 +38,21 @@ public class SimhashIndex {
 		ArrayList<String> result = new ArrayList<String>();
 		for(int i = 0; i < offsets.size(); i++)
 		{
-			int offset = (Integer)offsets.get(i);
-			int m;
+			int offset = (int)offsets.get(i);
+			int m = 0;
 			if (i == offsets.size() - 1)
 			{
 				m = (int)Math.pow(2, f - offset)-1;
 			}
 			else
 			{
-				m = (int)Math.pow(2, offsets.get(i+1) - offsets.get(i)) - 1;
+				m = (int)Math.pow(2, offsets.get(i+1) - offset) - 1;
 			}
+			//System.out.println("m = " + m);
 			long c = hash >> offset & m;
+			//System.out.println("kooo" + Long.toHexString(c));
 			String res = Long.toHexString(c) + "," + Integer.toString(i);
+			//System.out.println(res);
 			result.add(res);
 		}
 		return result;
@@ -65,7 +67,9 @@ public class SimhashIndex {
 	{
 		for(String key: get_keys(value))
 		{
-			String v = String.format("%x,%s", value, id);
+			String v = Long.toString(value) + "," + id;
+			//System.out.println("hex value = " + v);
+			
 			if(bucket.containsKey(key))
 			{
 				bucket.get(key).add(v);
@@ -83,17 +87,22 @@ public class SimhashIndex {
 	public Set<String> get_near_dups(long hash)
 	{
 		Set<String> result = new HashSet<String>();
+		//System.out.println(bucket);
 		for(String key: get_keys(hash))
 		{
 			Set<String> dups = bucket.get(key);
+			//System.out.println("lala");
+			//System.out.println(key);
 			if(dups == null)
 			{
 				continue;
 			}
 			for(String dup:dups)
 			{
+				//System.out.println(dup);
 				String[] parts = dup.split(",");
-				int distance = distance(hash,Long.parseLong(parts[0], 16));
+				//System.out.println(new BigInteger(parts[0], 16));
+				int distance = distance(hash,Long.parseLong(parts[0]));
 				if(distance <= k)
 				{
 					result.add(parts[1]);
@@ -104,16 +113,16 @@ public class SimhashIndex {
 		return result;
 	}
 	
-	  public static int distance(long hash1, long hash2) {
-		    long bits = hash1 ^ hash2;
-		    int count = 0;
-		    while (bits != 0) {
-		      bits &= bits - 1;
-		      ++count;
-		    }
-		    return count;
-		  }
-	
+	public static int distance(long hash1, long hash2) {
+		long bits = hash1 ^ hash2;
+		int count = 0;
+		while (bits != 0) {
+			bits &= bits - 1;
+			++count;
+		}
+		return count;
+	}
+
 	
 	
 	
