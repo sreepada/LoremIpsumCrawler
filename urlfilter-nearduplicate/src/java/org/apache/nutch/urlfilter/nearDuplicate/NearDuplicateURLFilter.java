@@ -17,7 +17,10 @@
 
 package org.apache.nutch.urlfilter.nearduplicate;
 
-import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.*;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.mapred.*;
 import org.apache.nutch.net.*;
 
 import org.apache.nutch.protocol.ProtocolFactory;                                                                                                     
@@ -26,10 +29,14 @@ import org.apache.nutch.protocol.Content;
 import org.apache.nutch.protocol.ProtocolException;
 import org.apache.nutch.util.NutchConfiguration;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.SequenceFile;
 import org.apache.nutch.crawl.CrawlDatum;
 import org.apache.nutch.metadata.Metadata;
+import org.apache.nutch.segment.SegmentReader;
+import org.apache.nutch.segment.SegmentReader.SegmentReaderStats;
 
 import org.apache.nutch.util.NutchConfiguration;
+import org.apache.nutch.util.NutchJob;
 import org.apache.nutch.util.SuffixStringMatcher;
 
 import org.apache.nutch.plugin.Extension;
@@ -46,7 +53,9 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.io.BufferedWriter;
+import java.io.Writer;
 
 import java.lang.Thread;
 
@@ -69,68 +78,103 @@ public class NearDuplicateURLFilter implements URLFilter {
     private boolean ignoreCase = false;
 
     private Configuration conf;
-    private static SimhashIndex simind = new SimhashIndex(new HashMap<String, Long>());
 
     private static final Logger LOG = LoggerFactory
         .getLogger(NearDuplicateURLFilter.class);
 
 
     public NearDuplicateURLFilter() throws IOException {
+        LOG.info("start aagide");
         LOG.info("current thread ID " + Thread.currentThread().getId());
 
     }
 
-    public String filter(String url) {
-        String urlString = url;
-        Protocol protocol;
-        Content content;
+    public void logExError(Exception e) {
+        StringWriter errors = new StringWriter();
+        e.printStackTrace(new PrintWriter(errors));
+        LOG.error(errors.toString());
+    }
 
-        Configuration conf = NutchConfiguration.create();
-        try {
-            protocol = new ProtocolFactory(conf).getProtocol(urlString);                                                                                
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        content = protocol.getProtocolOutput(new Text(urlString),
-                new CrawlDatum()).getContent();
+    public String filter(String urlString) {
+        LOG.info("inside the function");
+        LOG.info("checking the url " + urlString);
+        LOG.info("current thread ID inside function " + Thread.currentThread().getId());
 
-        Metadata metadata = content.getMetadata();
-        //LOG.info("this is the metadata: " + metadata.toString());
+        JobConf job = new NutchJob(getConf());
+        String path = job.get("mapred.work.output.dir", "dintGetAnything");
+        LOG.info("this is the current path: " + path);
+        if (path.contains("segment")) {
+            SimhashIndex simind = new SimhashIndex(new HashMap<String, Long>());
+            String segmentPath = path.split("/_temporary/")[0];
+            LOG.info("this is the path of the current nutch job segments " + segmentPath);
 
-        Set<String> shingles = new HashSet<String>(); 
-
-        for(String key: metadata.names())
-        {
-            if(key.equals("Date") || key.equals("Set-Cookie"))
-            {
-                continue;
+            try {
+                Configuration confForReader = NutchConfiguration.create();       
+                FileSystem fs = FileSystem.get(confForReader);
+                Path segmentFile = new Path(segmentPath + "/content/part-00000/data");
+                SequenceFile.Reader reader = new SequenceFile.Reader(fs, segmentFile, confForReader);
+                Text segmentKey = new Text();
+                Content segmentContent = new Content();
+                // Loop through sequence files
+                while (reader.next(segmentKey, segmentContent)) {
+                    Metadata segmentMetadata = segmentContent.getMetadata();
+                    LOG.info("this is the key: " + segmentKey + " with the metadata: " + segmentMetadata.toString());
+                    Set<String> shingles = new HashSet<String>();
+                    for(String key: segmentMetadata.names())
+                    {
+                        if(key.equals("Date") || key.equals("Set-Cookie"))
+                        {
+                            continue;
+                        }
+                        shingles.add(key + ":" + segmentMetadata.get(key));
+                    }
+                    long simhash = SimHash.computeSimHashFromString(shingles); 
+                    simind.add(Long.toString(System.nanoTime()), simhash);
+                }
+            } catch (Exception e) {
+                logExError(e);
             }
-            shingles.add(key + ":" + metadata.get(key));
+
+            Configuration conf = NutchConfiguration.create();
+            Protocol protocol;
+            Content content;
+            try {
+                protocol = new ProtocolFactory(conf).getProtocol(urlString);                                                                                
+            } catch (Exception e) {
+                logExError(e);
+                return urlString;
+            }
+            content = protocol.getProtocolOutput(new Text(urlString),
+                    new CrawlDatum()).getContent();
+
+            Metadata metadata = content.getMetadata();
+            LOG.info("this is the metadata: " + metadata.toString());
+
+            Set<String> shingles = new HashSet<String>();
+
+            for(String key: metadata.names())
+            {
+                if(key.equals("Date") || key.equals("Set-Cookie"))
+                {
+                    continue;
+                }
+                shingles.add(key + ":" + metadata.get(key));
+            }
+
+            long simhash = SimHash.computeSimHashFromString(shingles); 
+            Set<String> duplicates = simind.get_near_dups(simhash);
+
+            if(duplicates.size() > 0)
+            {
+                LOG.info("found a duplicate: " + urlString);
+                return null;
+            }
+            else
+            {
+                simind.add(Long.toString(System.nanoTime()), simhash);
+            }
         }
-
-
-        long simhash = SimHash.computeSimHashFromString(shingles); 
-
-        Set<String> duplicates = simind.get_near_dups(simhash);
-
-        if(duplicates.size() > 0)
-        {
-            //LOG.info("found a duplicate: " + urlString);
-            return null;
-        }
-        else
-        {
-            simind.add(Long.toString(System.nanoTime()), simhash);
-        }
-
-        /*try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("/home/sreepada/Documents/CSCI_572/nutch/runtime/local/myfile.txt", true)))) {
-            out.println("\n{\n\turl:'" + urlString + "',\n\t metadata: '" + metadata.toString() + "'\n}");
-        }catch (IOException e) {
-            //exception handling left as an exercise for the reader
-            LOG.error("file bardilla");
-        }*/
-        return url;
+        return urlString;
     }
 
     public static void main(String args[]) throws IOException {
