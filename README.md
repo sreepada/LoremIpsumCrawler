@@ -4,14 +4,14 @@ CSCI 572 Spring 2015 Assignemnts
 
 1. Mime types: (get_mime_types.py)
 ----------------------------------
-Command to get mime types
-python get_mime_types.py <path>/crawldb
+Command to get mime types   
+`python get_mime_types.py <path>/crawldb`   
     where <path> - project name used in crawl
 
 2. Getting stats: (get_crawl_stats.py)
 --------------------------------------
-Command to get stats
-python get_crawl_stats.py <path>/crawldb
+Command to get stats   
+`python get_crawl_stats.py <path>/crawldb`   
     where <path> - project name used in crawl
 
 3. Mime types found: (mime_types)
@@ -37,13 +37,13 @@ URLs which failed during second crawl (with selenium) which can be found in fail
 8. Include plugin into nutch:
 --------------------------------
   1. Copy urlfilter-nearduplcate and urlfilter-exactdupliate to folder $nutch_root/src/plugin/.
-  2. Add
-      `<ant dir="urlfilter-nearduplicate" target="deploy"/>`
-      `<ant dir="urlfilter-exactduplicate" target="deploy"/>`
+  2. Add   
+      `<ant dir="urlfilter-nearduplicate" target="deploy"/>`   
+      `<ant dir="urlfilter-exactduplicate" target="deploy"/>`   
        under deploy targets to file $nutch_root/src/plugin/build.xml as showin __plugin\_build.xml__
-  3. _(Optional)_ Add
-        `<ant dir="urlfilter-nearduplicate" target="clean"/>`
-        `<ant dir="urlfilter-exactduplicate" target="clean"/>`
+  3. _(Optional)_ Add   
+        `<ant dir="urlfilter-nearduplicate" target="clean"/>`   
+        `<ant dir="urlfilter-exactduplicate" target="clean"/>`   
         under clean targets to file $nutch_root/src/plugin/build.xml as showin __plugin\_build.xml__
   4. Copy __nutch-site.xml__ to your preferred nutch-site.xml conf.
   5. run `ant runtime` in you $nutch_root
