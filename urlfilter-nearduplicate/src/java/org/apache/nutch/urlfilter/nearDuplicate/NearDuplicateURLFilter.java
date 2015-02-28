@@ -96,7 +96,7 @@ public class NearDuplicateURLFilter implements URLFilter {
                 new CrawlDatum()).getContent();
 
         Metadata metadata = content.getMetadata();
-        LOG.info("this is the metadata: " + metadata.toString());
+        //LOG.info("this is the metadata: " + metadata.toString());
 
         Set<String> shingles = new HashSet<String>(); 
 
@@ -116,7 +116,7 @@ public class NearDuplicateURLFilter implements URLFilter {
 
         if(duplicates.size() > 0)
         {
-            LOG.info("found a duplicate: " + urlString);
+            //LOG.info("found a duplicate: " + urlString);
             return null;
         }
         else

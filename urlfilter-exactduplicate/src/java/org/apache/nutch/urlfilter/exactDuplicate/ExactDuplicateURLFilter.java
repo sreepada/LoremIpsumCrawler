@@ -68,14 +68,13 @@ public class ExactDuplicateURLFilter implements URLFilter {
     private boolean ignoreCase = false;
 
     private Configuration conf;
-    private static SimhashIndex simind = new SimhashIndex(new HashMap<String, Long>());
+    private static IdDuplicates exact_duplicate = new IdDuplicates();
 
     private static final Logger LOG = LoggerFactory
         .getLogger(ExactDuplicateURLFilter.class);
 
 
     public ExactDuplicateURLFilter() throws IOException {
-        LOG.info("start aagide");
         LOG.info("current thread ID " + Thread.currentThread().getId());
 
     }
@@ -84,9 +83,6 @@ public class ExactDuplicateURLFilter implements URLFilter {
         String urlString = url;
         Protocol protocol;
         Content content;
-        LOG.info("inside the function");
-        LOG.info("checking the url " + urlString);
-        LOG.info("current thread ID inside function " + Thread.currentThread().getId());
 
         Configuration conf = NutchConfiguration.create();
         try {
@@ -104,28 +100,12 @@ public class ExactDuplicateURLFilter implements URLFilter {
         } catch (Exception e) {
             LOG.error("excpetion while string encoding");
         }
-        LOG.info("this is the page content: " + pageText);
 
-        long simhash = SimHash.computeSimHashFromString(Shingle.shingles(pageText)); 
-
-        Set<String> duplicates = simind.get_near_dups(simhash);
-
-        if(duplicates.size() > 0)
+        if(!exact_duplicate.checkForExactDuplicates(pageText, urlString))
         {
-            LOG.info("found a duplicate: " + urlString);
             return null;
         }
-        else
-        {
-            simind.add(Long.toString(System.nanoTime()), simhash);
-        }
 
-        /*try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("/home/sreepada/Documents/CSCI_572/nutch/runtime/local/myfile.txt", true)))) {
-          out.println("\n{\n\turl:'" + urlString + "',\n\t metadata: '" + metadata.toString() + "'\n}");
-          }catch (IOException e) {
-        //exception handling left as an exercise for the reader
-        LOG.error("file bardilla");
-        }*/
         return url;
     }
 
@@ -155,12 +135,7 @@ public class ExactDuplicateURLFilter implements URLFilter {
                 LOG.info("Attribute \"file\" is defined for plugin " + pluginName
                         + " as " + attributeFile);
             }
-        } else {
-            // if (LOG.isWarnEnabled()) {
-            // LOG.warn("Attribute \"file\" is not defined in plugin.xml for
-            // plugin "+pluginName);
-            // }
-        }
+        } 
 
         String file = conf.get("urlfilter.suffix.file");
         String stringRules = conf.get("urlfilter.suffix.rules");
@@ -174,14 +149,6 @@ public class ExactDuplicateURLFilter implements URLFilter {
             reader = conf.getConfResourceAsReader(file);
         }
 
-        /*try {
-        //readConfiguration(reader);
-        } catch (IOException e) {
-        if (LOG.isErrorEnabled()) {
-        LOG.error(e.getMessage());
-        }
-        throw new RuntimeException(e.getMessage(), e);
-        }*/
     }
 
     public Configuration getConf() {
