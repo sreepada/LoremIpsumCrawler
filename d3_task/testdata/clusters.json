@@ -1,0 +1,453 @@
+{
+    "children": [
+        {
+            "children": [
+                {
+                    "name": "server.jpg",
+                    "score": 0.612021857923
+                }
+            ],
+            "name": "cluster0"
+        },
+        {
+            "children": [
+                {
+                    "name": "thumb_IMG_0455.jpg",
+                    "score": 0.573770491803
+                },
+                {
+                    "name": "IoT_bike_sensor.jpg",
+                    "score": 0.568306010929
+                },
+                {
+                    "name": "IoT_bike_sensor(1).jpg",
+                    "score": 0.568306010929
+                }
+            ],
+            "name": "cluster1"
+        },
+        {
+            "children": [
+                {
+                    "name": "cec_logo2.jpg",
+                    "score": 0.377049180328
+                },
+                {
+                    "name": "Mail_20Attachment-2.jpg",
+                    "score": 0.377049180328
+                }
+            ],
+            "name": "cluster2"
+        },
+        {
+            "children": [
+                {
+                    "name": "image.jpg",
+                    "score": 0.349726775956
+                }
+            ],
+            "name": "cluster3"
+        },
+        {
+            "children": [
+                {
+                    "name": "allenburn.jpg",
+                    "score": 0.262295081967
+                },
+                {
+                    "name": "image-200x98.jpg",
+                    "score": 0.256830601093
+                }
+            ],
+            "name": "cluster4"
+        },
+        {
+            "children": [
+                {
+                    "name": "parkpass.jpg",
+                    "score": 0.245901639344
+                },
+                {
+                    "name": "screen568x568.jpg",
+                    "score": 0.24043715847
+                },
+                {
+                    "name": "thumb_IMG_0876.jpg",
+                    "score": 0.24043715847
+                },
+                {
+                    "name": "thumb_IMG_0852.jpg",
+                    "score": 0.24043715847
+                },
+                {
+                    "name": "IMG_2919.jpg",
+                    "score": 0.24043715847
+                },
+                {
+                    "name": "oco.jpg",
+                    "score": 0.24043715847
+                },
+                {
+                    "name": "IMG_2899.jpg",
+                    "score": 0.24043715847
+                },
+                {
+                    "name": "2008_0419ESD-4-0045.jpg",
+                    "score": 0.234972677596
+                }
+            ],
+            "name": "cluster5"
+        },
+        {
+            "children": [
+                {
+                    "name": "shortterm.jpg",
+                    "score": 0.196721311475
+                }
+            ],
+            "name": "cluster6"
+        },
+        {
+            "children": [
+                {
+                    "name": "walkingroy.jpg",
+                    "score": 0.125683060109
+                }
+            ],
+            "name": "cluster7"
+        },
+        {
+            "children": [
+                {
+                    "name": "thumb_IMG_0389.jpg",
+                    "score": 0.114754098361
+                },
+                {
+                    "name": "P1010882_1.jpg",
+                    "score": 0.114754098361
+                }
+            ],
+            "name": "cluster8"
+        },
+        {
+            "children": [
+                {
+                    "name": "online-course.jpg",
+                    "score": 0.103825136612
+                },
+                {
+                    "name": "IMG_2909.jpg",
+                    "score": 0.103825136612
+                },
+                {
+                    "name": "ipad-148x148.jpg",
+                    "score": 0.103825136612
+                },
+                {
+                    "name": "IMG_2895.jpg",
+                    "score": 0.103825136612
+                },
+                {
+                    "name": "i-70.jpg",
+                    "score": 0.0983606557377
+                }
+            ],
+            "name": "cluster9"
+        },
+        {
+            "children": [
+                {
+                    "name": "Physics-Comp_Group_1jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "c03ea34c-5349-4338-8jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "monthly-e13929428879jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "459978main_workshoppjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "IMG_1476-e1412658926jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "410157main_social_mejpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "ccp_usmap_214.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "471318main_neoworkshjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "312903main_outpost10jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "318738main_isecg100xjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "558332main_oct_100.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "4308e6dd-f4fe-4ce6-8jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "361185main_hsf_explojpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "USGS_Researchers_in_jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "279445main_bremenglojpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "BSSN_logo1.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "749264main_gender-wkjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "140423180216-thomas-jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "689808main_voyages-cjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "recovery_map.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "331961main_2009nss10jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "83f61f24-1b34-401e-ajpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "fe15a180-fa16-4064-8jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "272725main_aiaa100x7jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "76f54676-21d3-4c25-ajpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "d822ffe8-2383-4bb2-ajpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "2008_0419ESD-4-0045-jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "dc-contact-logo2.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "hydro-illogical-cycljpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "8b1849b2-4ee8-4bdb-bjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "v394x9h29yark0jb0h2ujpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "951818d6-df3c-4241-8jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "202127main_sec-logo-jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "aerosol-model-100409jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "296205main_exploreupjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "272331main_aresv-altjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "5e7d14b2-35c6-448c-9jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "0877a84d-97e0-4e69-ajpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "s-pol-at-marshall-wijpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "c58eb6fb-d523-4ba2-ajpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "Haynes_Lynn_Lab14_10jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "Web_Forcopypage_Cryojpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "iss-sharable-100.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "231451main_LSS_100.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "2f21bc3b-b561-4008-8jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "Graphic-TUM-Logo.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "Brain_sensor_home_pajpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "latest.mk4__0.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "5c8d424d-d937-4e43-ajpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "280189main_1st-sec10jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "been-brown-lg-128x20jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "9b28f5d4-49cc-472c-bjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "recovery_left.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "IMG_8661-200x150.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "cmaps-100.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "469267main_cc_100x75jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "poetics_2526politicsjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "voyages_coverpromo_1jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "www.ucla_.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "pilgrim_2Bpipe_2Bhudjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "politifact_2Fmugs_2Fjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "hero_ipodnano_6thgenjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "width380_logo-138137jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "quiz-ad.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "MIT-charm-school-01_jpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "pollution.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "nasa-history_100.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "boycott_2Bposter_2Bgjpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "black_2Bhistory_2Bmojpeg.jpg",
+                    "score": 0.0819672131148
+                },
+                {
+                    "name": "621160main_dart_rm_1jpeg.jpg",
+                    "score": 0.0819672131148
+                }
+            ],
+            "name": "cluster10"
+        },
+        {
+            "children": [
+                {
+                    "name": "140620124457-movemenjpeg.jpg",
+                    "score": 0.0710382513661
+                }
+            ],
+            "name": "cluster11"
+        }
+    ],
+    "name": "clusters"
+}
